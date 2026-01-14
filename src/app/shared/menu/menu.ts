@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class Menu {
 
+  nomeUsuarioLogado : string = '';
+logout(): void {
+    // Lógica para fazer logout do usuário
+    console.log('Usuário deslogado');
+  }
 }

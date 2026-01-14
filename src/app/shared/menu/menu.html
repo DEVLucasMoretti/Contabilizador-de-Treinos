@@ -1,1 +1,52 @@
-<p>menu works!</p>
+<nav class="navbar navbar-expand-lg bg word-color">
+  <ul style="margin-left: 20px;" class="navbar-nav w-100 mb-2 mb-lg-0 mt-2">
+    <li>
+      <a routerLink="/home">
+        <img src="logo.png" alt="Logo" width="90" height="80" class="me-2">
+      </a>
+    </li>
+    <li class="nav-item mt-4">
+      <a class="nav-link" routerLink="/index-cadastroClientes" routerLinkActive="active me-active">
+        <span>Contabilizar Treino</span>
+      </a>
+    </li>
+
+    <li class="nav-item mt-4">
+      <a class="nav-link" routerLink="/index-relatorios" routerLinkActive="active me-active">
+        <span>Treinos</span>
+      </a>
+    </li>
+
+    <li class="nav-item mt-4">
+      <a class="nav-link" routerLink="/index-tarefasContabeis" routerLinkActive="active me-active">
+        <span>Relatório</span>
+      </a>
+    </li>
+
+     <li class="nav-item dropdown ms-auto user-menu mt-3" style="margin-right: 45px;">
+      <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+         data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person-circle user-icon"></i>
+        <span>{{nomeUsuarioLogado}}</span>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end user-dropdown">
+        <li>
+          <a class="dropdown-item" routerLink="/index-cadastroUsuarios">
+            <i class="bi bi-person-plus me-2"></i> Cadastro de Usuários
+          </a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+          <a class="dropdown-item" routerLink="/index-login"  (click)="logout()">
+            <i class="bi bi-box-arrow-right me-2" ></i> Logout
+          </a>
+        </li>
+      </ul>
+    </li>
+
+
+  </ul>
+</nav>
