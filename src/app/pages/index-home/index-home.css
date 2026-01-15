@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 100px;
+}
+
+.card {
+  width: 300px;
+  height: 200px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: black;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+p{
+  padding-top: 50px;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.mascote {
+  position: fixed;
+  right: 20px;     /* distância da direita */
+  bottom: 120px;   /* SOBE a imagem */
+  width: 350px;
+  height: auto;
+  z-index: 1000;   /* garante que fique por cima */
+}
