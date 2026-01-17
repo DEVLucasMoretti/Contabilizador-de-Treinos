@@ -1,1 +1,45 @@
-<p>index-contabilizar-treino works!</p>
+<app-menu></app-menu>
+<h2 class="mt-5 text-center">CONTABILIZAR TREINO</h2>
+
+<div class="container">
+  <div class="row g-3 align-items-end">
+
+    <!-- Calorias -->
+    <div class="col-md-4">
+      <div class="form-floating">
+        <input
+          type="text"
+          [(ngModel)]="caloriasgastas"
+          class="form-control bg-input"
+          id="calorias"
+          placeholder="Calorias">
+        <label for="calorias">Quantidade de Calorias Gastas</label>
+      </div>
+    </div>
+
+    <!-- Treino -->
+    <div class="col-md-4">
+      <div class="form-floating">
+        <input
+          type="text"
+          [(ngModel)]="treinoDoDia"
+          class="form-control bg-input"
+          id="treino"
+          placeholder="Treino">
+        <label for="treino">Treino do dia</label>
+      </div>
+    </div>
+
+    <!-- Data -->
+    <div class="col-md-4">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Data</mat-label>
+
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+  </div>
+</div>
