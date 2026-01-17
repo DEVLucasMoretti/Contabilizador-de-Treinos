@@ -1,0 +1,67 @@
+main {
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+mat-form-field {
+  height: 58px;
+  background-color: rgba(232, 132, 69, 0.29);
+
+}
+
+h2 {
+  padding-top: 150px;
+}
+
+.mat-mdc-form-field-flex {
+  height: 58px;
+  align-items: center;
+}
+
+.mat-mdc-text-field-wrapper {
+  height: 58px;
+}
+
+.btn-contabilizar {
+  background-color: #d35400;
+  /* laranja */
+  color: #fff;
+  border: none;
+  padding: 14px 48px;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 999px;
+  /* formato pill */
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-contabilizar:hover {
+  background-color: #d66401;
+  transform: scale(1.03);
+}
+
+.btn-contabilizar:active {
+  transform: scale(0.97);
+}
+
+.bg-input {
+  border: 1px solid rgba(0, 0, 0, 0.38);
+  background-color: rgba(232, 132, 69, 0.29);
+}
+
+.bg-input:focus {
+  border-color: rgba(0, 0, 0, 0.6);
+  box-shadow: none;
+}
+
+.mascote {
+  position:absolute;
+  bottom: px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  height: auto;
+
+}

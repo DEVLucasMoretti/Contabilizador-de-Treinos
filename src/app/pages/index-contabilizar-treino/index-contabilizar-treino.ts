@@ -47,7 +47,7 @@ export const MY_DATE_FORMATS = {
     MatDatepickerModule,
     MatMomentDateModule,
     Menu
-],
+  ],
   templateUrl: './index-contabilizar-treino.html',
   styleUrl: './index-contabilizar-treino.css',
   providers: [
@@ -64,6 +64,7 @@ export class IndexContabilizarTreino {
 
   caloriasgastas: number | string = '';
   treinoDoDia: string = '';
+dataSelecionada: Moment | null = null;
 
   data: Moment = moment();
 
@@ -71,4 +72,15 @@ export class IndexContabilizarTreino {
     moment.locale('pt-br');
     this.dateAdapter.setLocale('pt-br');
   }
+
+
+
+btnContabilizarTreino() {
+  if (this.dataSelecionada) {
+    const dataFormatada = this.dataSelecionada.format('YYYY-MM-DD');
+    console.log(dataFormatada);
+  }
+}
+
+
 }

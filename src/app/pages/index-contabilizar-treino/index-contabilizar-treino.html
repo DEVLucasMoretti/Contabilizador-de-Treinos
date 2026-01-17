@@ -1,14 +1,17 @@
 <app-menu></app-menu>
-<h2 class="mt-5 text-center">CONTABILIZAR TREINO</h2>
 
-<div class="container">
+<main>
+
+<h2 class="text-center">CONTABILIZAR TREINO</h2>
+
+<div class="container mt-5">
   <div class="row g-3 align-items-end">
 
     <!-- Calorias -->
     <div class="col-md-4">
       <div class="form-floating">
         <input
-          type="text"
+          type="number"
           [(ngModel)]="caloriasgastas"
           class="form-control bg-input"
           id="calorias"
@@ -30,16 +33,40 @@
       </div>
     </div>
 
-    <!-- Data -->
-    <div class="col-md-4">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Data</mat-label>
+<!-- Data -->
+<div class="col-md-4">
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Data</mat-label>
 
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="dataSelecionada"
+      [ngModelOptions]="{ standalone: true }">
+
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="picker">
+    </mat-datepicker-toggle>
+
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+
 
   </div>
 </div>
+
+<div class="d-flex justify-content-center mt-5">
+  <button class="btn-contabilizar" (click)="btnContabilizarTreino()">
+    CONTABILIZAR
+  </button>
+</div>
+
+<img
+  src="mascotePaginaContabilizarTreino.png"
+  class="mascote"
+  alt="Mascote raposa feliz com halteres">
+
+</main>
+
