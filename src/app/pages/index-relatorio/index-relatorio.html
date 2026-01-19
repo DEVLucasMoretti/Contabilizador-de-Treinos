@@ -1,1 +1,47 @@
-<p>index-relatorio works!</p>
+<main class="main">
+  <app-header></app-header>
+  <div style="display: flex; justify-content: center; align-items: center; gap:40px; margin-top: 20px;">
+    <h1 style="color: #03371C; margin-right: 140px;">RELATÓRIO DOS TREINOS</h1>
+    <div style="text-align: left; line-height: 1.2;"> </div>
+  </div>
+  <div class="container mt-4">
+    <main class="row g-3s align-items-end"> <!-- Tipo de Serviço -->
+
+      <div class="col-md-3">
+        <div class="form-floating"> <mat-form-field appearance="fill"> <mat-label>Selecione o Período</mat-label>
+            <mat-date-range-input [rangePicker]="picker"> <input matStartDate placeholder="Data inicial"
+                [(ngModel)]="periodo.start" name="inicio" /> <input matEndDate placeholder="Data final"
+                [(ngModel)]="periodo.end" name="fim" /> </mat-date-range-input> <mat-datepicker-toggle matIconSuffix
+              [for]="picker"></mat-datepicker-toggle> <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field> </div>
+      </div> <!-- Botão Buscar -->
+      <div class="col-md-2 d-grid mb-4">
+        <!-- <button type="button" class="btn btn-success">Buscar</button> --> <button type="button"
+          class="btn btn-success" (click)="BuscarRelatorio()">Buscar</button>
+      </div>
+      <div>
+
+      </div>
+
+
+      <div class="mt-5" *ngIf="this.clicouEmBuscar >= 1 ">
+        <table class="table table-striped mt-2">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Dia da Semana</th>
+              <th>Quantidade de Kcal Gastas</th>
+              <th>Treino</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela">
+            <tr *ngFor="let linha of this.listaDeTreinos">
+              <td>{{linha.Data}}</td>
+              <td>{{linha.DiaDaSemana}}</td>
+              <td>{{linha.KcalGastas}}</td>
+              <td>{{linha.Treino}}</td>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
