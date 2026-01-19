@@ -17,6 +17,7 @@ import _moment from 'moment';
 import 'moment/locale/pt-br';
 import { FormsModule } from '@angular/forms';
 import { timeInterval, timer } from 'rxjs';
+import { MatCard } from "@angular/material/card";
 const moment = _moment;
 // registra o locale português no Angular
 registerLocaleData(pt);
@@ -44,9 +45,16 @@ export const MY_DATE_FORMATS = {
     MatInputModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatButtonModule,],
+    MatButtonModule,
+    MatCard
+],
   templateUrl: './index-relatorio.html',
   styleUrl: './index-relatorio.css',
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
+  ],
 })
 export class IndexRelatorio {
   private readonly router = inject(Router);
@@ -55,6 +63,7 @@ export class IndexRelatorio {
   clicouEmBuscar: number = 0;
   periodo: { start: Date | null; end: Date | null } = { start: null, end: null };
   listaDeTreinos: any[] = [];
+  teste : number = 0;
 
   constructor() {
     //força o calendário e nomes para português

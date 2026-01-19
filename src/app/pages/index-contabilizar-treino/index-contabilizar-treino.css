@@ -5,7 +5,7 @@ main {
 
 mat-form-field {
   height: 58px;
-  background-color: rgba(232, 132, 69, 0.29);
+  background-color: #d0d2db;
 
 }
 
@@ -48,7 +48,7 @@ h2 {
 
 .bg-input {
   border: 1px solid rgba(0, 0, 0, 0.38);
-  background-color: rgba(232, 132, 69, 0.29);
+  background-color: #d0d2db;
 }
 
 .bg-input:focus {

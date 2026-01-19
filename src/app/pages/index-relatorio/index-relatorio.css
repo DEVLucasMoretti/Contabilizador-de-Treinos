@@ -5,3 +5,61 @@
   background-color: rgb(255, 255, 255);
    min-height: 100vh;
 }
+.btn-contabilizar {
+  background-color: #d35400;
+  /* laranja */
+  color: #fff;
+  border: none;
+  padding: 14px 48px;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 9px;
+  /* formato pill */
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-contabilizar:hover {
+  background-color: #d66401;
+  transform: scale(1.03);
+}
+
+.btn-contabilizar:active {
+  transform: scale(0.97);
+}
+
+.mascote {
+  position:absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 550px;
+  height: auto;
+
+}
+
+
+
+.container-cards {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* centraliza verticalmente (itens entre si) */
+  gap: 20px;               /* espaço entre os cards */
+  padding: 50px;
+}
+
+
+.card {
+  width: 300px;
+  height: 200px;
+  border: 2px solid rgb(35, 33, 33);
+  background-color: rgb(223, 94, 15);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+p{
+  padding-top: 50px;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
