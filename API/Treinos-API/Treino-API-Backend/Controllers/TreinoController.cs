@@ -1,0 +1,113 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.ModelBinding;
+
+namespace  Treinos_API_Backend.Controllers
+{
+    public class TreinoController : ApiController
+    {
+        Utils.Logger logger;
+        Repositories.Treino repository;
+        public TreinoController()
+        {
+            logger = new Utils.Logger(Configurations.Config.GetLogPath());
+            repository = new Repositories.Treino(Configurations.Config.GetConnectionString());
+            repository.CacheExpirationTime = Configurations.Config.GetCacheExpiration("cacheExpirationTimeInSeconds");
+        }
+        // GET: api/Treino
+        public async Task<IHttpActionResult> Get()
+        {
+            try
+            {
+                return Ok(await repository.GetAll());
+            }
+            catch (Exception ex)
+            {
+                await logger.Log(ex);
+                return InternalServerError();
+            }
+        }
+
+        // GET: api/Treino/data
+        [Route("api/Treinos/data")]
+        public async Task<IHttpActionResult> Get(string data)
+        {
+            try
+            {
+                List<Models.Treino> Treinos = await repository.GetByDate(data);
+                if(Treinos.Count == 0)
+                    return NotFound();
+                return Ok(Treinos);
+            }
+            catch (Exception ex)
+            {
+                await logger.Log(ex);
+                return InternalServerError();
+            }
+        }
+
+        // POST: api/Treino
+        public async Task<IHttpActionResult> Post([FromBody]Models.Treino Treino)
+        {
+            if (Treino == null)
+                return BadRequest("Os dados do Treino não foram preenchidos ");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            try
+            {
+                await repository.Add(Treino);
+                if(Treino.Id == 0)
+                    return BadRequest();
+                return Ok(Treino);
+            }
+            catch (Exception ex)
+            {
+                await logger.Log(ex);
+                return InternalServerError();
+            }
+        }
+
+        // PUT: api/Treino/5
+        public async Task<IHttpActionResult> Put(int id, [FromBody]Models.Treino Treino)
+        {
+            if (Treino == null)
+                return BadRequest("Os dados do Treino não foram preenchidos ");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            if(Treino.Id != id)
+                return BadRequest("O Id da rota não corresponde com id");
+            try
+            {
+                if (!await repository.Update(Treino))
+                    return BadRequest();
+                return Ok(Treino);
+            }
+            catch (Exception ex)
+            {
+                await logger.Log(ex);
+                return InternalServerError();
+            }
+        }
+
+        // DELETE: api/Treino/5
+        public async Task<IHttpActionResult> Delete(int id)
+        {
+            try
+            {
+               if(!await repository.Delete(id))
+                    return NotFound();
+               return Ok();
+            }
+            catch (Exception ex)
+            {
+                await logger.Log(ex);
+                return InternalServerError();
+            }
+        }
+    }
+}
