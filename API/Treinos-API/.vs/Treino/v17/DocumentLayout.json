@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\TCC\\AppFitness\\API\\Treinos-API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{81CF5A9E-EB49-44D1-81C1-9AA18FAB21A8}|Repositories\\Repositories.csproj|C:\\TCC\\AppFitness\\API\\Treinos-API\\repositories\\interface\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81CF5A9E-EB49-44D1-81C1-9AA18FAB21A8}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interface\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{81CF5A9E-EB49-44D1-81C1-9AA18FAB21A8}|Repositories\\Repositories.csproj|c:\\tcc\\appfitness\\api\\treinos-api\\repositories\\treino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{81CF5A9E-EB49-44D1-81C1-9AA18FAB21A8}|Repositories\\Repositories.csproj|solutionrelative:repositories\\treino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{81CF5A9E-EB49-44D1-81C1-9AA18FAB21A8}|Repositories\\Repositories.csproj|C:\\TCC\\AppFitness\\API\\Treinos-API\\repositories\\interface\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81CF5A9E-EB49-44D1-81C1-9AA18FAB21A8}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interface\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ADE978A0-72E0-46AB-A4F3-C6E4915F4FE7}|Treino-API-Backend\\Treino.csproj|c:\\tcc\\appfitness\\api\\treinos-api\\treino-api-backend\\controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ADE978A0-72E0-46AB-A4F3-C6E4915F4FE7}|Treino-API-Backend\\Treino.csproj|solutionrelative:treino-api-backend\\controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D1D91B8B-1CFC-46AB-AB71-A6CAE1C2025E}|Models\\Models.csproj|C:\\TCC\\AppFitness\\API\\Treinos-API\\models\\treino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -41,9 +45,6 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\App_Start\\WebApiConfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Controllers\\TreinoController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:3:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -54,23 +55,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Global.asax",
               "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax",
@@ -82,20 +75,29 @@
               "IsPinned": true
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Global.asax.cs",
-              "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax.cs",
-              "ToolTip": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-24T17:26:16.298Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
+              "Title": "TreinoController.cs",
+              "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Treino-API-Backend\\Controllers\\TreinoController.cs",
+              "RelativeDocumentMoniker": "Treino-API-Backend\\Controllers\\TreinoController.cs",
+              "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Treino-API-Backend\\Controllers\\TreinoController.cs",
+              "RelativeToolTip": "Treino-API-Backend\\Controllers\\TreinoController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAD4vyUAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T12:40:12.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Config.cs",
               "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
@@ -107,7 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Web.config",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Web.config",
@@ -119,7 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Config.cs",
               "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
@@ -131,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "WebApiConfig.cs",
               "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\App_Start\\WebApiConfig.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\App_Start\\WebApiConfig.cs",
@@ -140,18 +142,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-25T16:11:50.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "TreinoController.cs",
-              "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Controllers\\TreinoController.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Controllers\\TreinoController.cs",
-              "ToolTip": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Controllers\\TreinoController.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Controllers\\TreinoController.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAcwG8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T18:26:17.403Z"
             },
             {
               "$type": "Document",
@@ -167,37 +157,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Logger.cs",
-              "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Utils\\Logger.cs",
-              "RelativeDocumentMoniker": "Utils\\Logger.cs",
-              "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Utils\\Logger.cs",
-              "RelativeToolTip": "Utils\\Logger.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwCAAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T18:20:10.496Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IRepository.cs",
-              "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Interface\\IRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\Interface\\IRepository.cs",
-              "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Interface\\IRepository.cs",
-              "RelativeToolTip": "Repositories\\Interface\\IRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T15:49:31.238Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Treino.cs",
               "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Treino.cs",
               "RelativeDocumentMoniker": "Repositories\\Treino.cs",
               "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Treino.cs",
               "RelativeToolTip": "Repositories\\Treino.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAApwDoAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-06T19:16:06.414Z",
               "EditorCaption": ""
@@ -205,6 +171,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Utils\\Logger.cs",
+              "RelativeDocumentMoniker": "Utils\\Logger.cs",
+              "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Utils\\Logger.cs",
+              "RelativeToolTip": "Utils\\Logger.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwCAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T18:20:10.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Interface\\IRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interface\\IRepository.cs",
+              "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Interface\\IRepository.cs",
+              "RelativeToolTip": "Repositories\\Interface\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T15:49:31.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ICacheService.cs",
               "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Utils\\Interface\\ICacheService.cs",
               "RelativeDocumentMoniker": "Utils\\Interface\\ICacheService.cs",
@@ -216,15 +208,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Treino.cs",
               "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Models\\Treino.cs",
               "RelativeDocumentMoniker": "Models\\Treino.cs",
               "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Models\\Treino.cs",
               "RelativeToolTip": "Models\\Treino.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T18:15:32.01Z"
+              "WhenOpened": "2025-07-06T18:15:32.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Global.asax.cs",
+              "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax.cs",
+              "ToolTip": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-24T17:26:16.298Z"
             }
           ]
         }

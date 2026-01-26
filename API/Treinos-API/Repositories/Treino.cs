@@ -60,7 +60,7 @@ namespace Repositories
 
         
 
-        public async Task<List<Models.Treino>> GetByDate(string date)
+        public async Task<List<Models.Treino>> GetByDate(DateTime dataInicio, DateTime dataFim)
         {
             List<Models.Treino> treinos = new List<Models.Treino>();
             using (conn)
@@ -68,8 +68,9 @@ namespace Repositories
                 await conn.OpenAsync();
                 using (cmd)
                 {
-                    cmd.CommandText = "SELECT Id, Data, Dia_Da_Semana, Treino_Do_Dia, Quantidade_Caloria FROM Treino WHERE Data = @Data";
-                    cmd.Parameters.Add(new SqlParameter("@Data",System.Data.SqlDbType.VarChar)).Value = date;
+                    cmd.CommandText = "SELECT Id, Data, Dia_Da_Semana, Treino_Do_Dia, Quantidade_Caloria FROM Treino WHERE Data BETWEEN @Data AND @DataFim ";
+                    cmd.Parameters.Add(new SqlParameter("@DataInicio", System.Data.SqlDbType.VarChar)).Value = dataInicio;
+                    cmd.Parameters.Add(new SqlParameter("@DataFim", System.Data.SqlDbType.VarChar)).Value = dataInicio;
                     SqlDataReader dr = await cmd.ExecuteReaderAsync();
 
                     while (dr.Read())

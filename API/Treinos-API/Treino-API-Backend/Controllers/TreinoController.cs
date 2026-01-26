@@ -35,11 +35,11 @@ namespace  Treinos_API_Backend.Controllers
 
         // GET: api/Treino/data
         [Route("api/Treinos/data")]
-        public async Task<IHttpActionResult> Get(string data)
+        public async Task<IHttpActionResult> Get(DateTime dataInicio, DateTime dataFim)
         {
             try
             {
-                List<Models.Treino> Treinos = await repository.GetByDate(data);
+                List<Models.Treino> Treinos = await repository.GetByDate(dataInicio, dataFim);
                 if(Treinos.Count == 0)
                     return NotFound();
                 return Ok(Treinos);
