@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Utils;
@@ -139,6 +140,50 @@ namespace Repositories
             return true;
 
         }
+
+        public async Task<List<Models.Treino>> GetProgressoSemana()
+        {
+            List<Models.Treino> treinos;
+
+            treinos = new List<Models.Treino>();
+            using (conn)
+            {
+                await conn.OpenAsync();
+                using (cmd)
+                {
+                    cmd.CommandText = "SELECT Id, Data, Dia_Da_Semana, Treino_Do_Dia, Quantidade_Caloria FROM Treino WHERE Data BETWEEN @DataIncio AND @DataFim ";
+
+                    DateTime dataIncio = DateTime.Now;
+                    DateTime dataAtualDoComputador = DateTime.Now;
+
+                    switch (dataAtualDoComputador.DayOfWeek)
+                    {
+                        case DayOfWeek.Monday: break;
+                        case DayOfWeek.Tuesday: dataIncio = dataIncio.AddDays(-1); break;
+                        case DayOfWeek.Wednesday: dataIncio = dataIncio.AddDays(-2); break;
+                        case DayOfWeek.Thursday: dataIncio = dataIncio.AddDays(-3); break;
+                        case DayOfWeek.Friday: dataIncio = dataIncio.AddDays(-4); break;
+                        case DayOfWeek.Saturday: dataIncio = dataIncio.AddDays(-5); break;
+                        case DayOfWeek.Sunday: dataIncio = dataIncio.AddDays(-6); break;
+                    }
+
+
+                    cmd.Parameters.Add(new SqlParameter("@DataIncio", System.Data.SqlDbType.Date)).Value = dataIncio; 
+                    cmd.Parameters.Add(new SqlParameter("@DataFim", System.Data.SqlDbType.Date)).Value = dataAtualDoComputador; 
+
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+                    while (dr.Read())
+                    {
+                        Models.Treino treino = new Models.Treino();
+                        MapperTreinoToDr(treino, dr);
+                        treinos.Add(treino);
+                    }
+                }
+            }
+            return treinos;
+        }
+
 
         public void MapperTreinoToDr(Models.Treino treino, SqlDataReader dr)
         {
