@@ -61,7 +61,7 @@ namespace Repositories
 
         
 
-        public async Task<List<Models.Treino>> GetByDate(DateTime dataInicio, DateTime dataFim)
+        public async Task<List<Models.Treino>> GetByPeriodOfTime(DateTime dataInicio, DateTime dataFim)
         {
             List<Models.Treino> treinos = new List<Models.Treino>();
             using (conn)
@@ -69,7 +69,7 @@ namespace Repositories
                 await conn.OpenAsync();
                 using (cmd)
                 {
-                    cmd.CommandText = "SELECT Id, Data, Dia_Da_Semana, Treino_Do_Dia, Quantidade_Caloria FROM Treino WHERE Data BETWEEN @Data AND @DataFim ";
+                    cmd.CommandText = "SELECT Id, Data, Dia_Da_Semana, Treino_Do_Dia, Quantidade_Caloria FROM Treino WHERE Data BETWEEN @DataInicio AND @DataFim ";
                     cmd.Parameters.Add(new SqlParameter("@DataInicio", System.Data.SqlDbType.VarChar)).Value = dataInicio;
                     cmd.Parameters.Add(new SqlParameter("@DataFim", System.Data.SqlDbType.VarChar)).Value = dataInicio;
                     SqlDataReader dr = await cmd.ExecuteReaderAsync();
@@ -84,6 +84,44 @@ namespace Repositories
             }
             return treinos;
         }
+
+        public async Task<int> GetByAllTimeTrainingDays()
+        {
+            int diasTreinadosNoTotal = 0;
+            using (conn)
+            {
+                await conn.OpenAsync();
+                using (cmd)
+                {
+                    cmd.CommandText = "SELECT Count(Id) Dias_Treinados_Total FROM Treino";
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+                    if (dr.Read())
+                        diasTreinadosNoTotal = (int)dr["Dias_Treinados_Total"];
+
+                }
+            }
+            return diasTreinadosNoTotal;
+        }
+
+        public async Task<bool> GetByDate(DateTime data)
+        {
+            using (conn)
+            {
+                await conn.OpenAsync();
+                using (cmd)
+                {
+                    cmd.CommandText = "SELECT * FROM Treino WHERE Data = @Data";
+                    cmd.Parameters.Add(new SqlParameter("@Data", System.Data.SqlDbType.Date)).Value = data ;
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+                    if (dr.Read())
+                        return true;    //chamar UPDATE             
+                }
+            }
+            return false;
+        }
+
         public async Task Add(Models.Treino treino)
         {
             using (conn)
@@ -188,7 +226,7 @@ namespace Repositories
         public void MapperTreinoToDr(Models.Treino treino, SqlDataReader dr)
         {
             treino.Id = (int) dr["Id"];
-            treino.TreinoDoDia = dr["Treino_Do_Dia "].ToString();
+            treino.TreinoDoDia = dr["Treino_Do_Dia"].ToString();
             treino.DiaDaSemana = dr["Dia_Da_Semana"].ToString();
             treino.QuantidadeCaloria = Convert.ToInt32(dr["Quantidade_Caloria"]);
             treino.Data = Convert.ToDateTime(dr["Data"]);

@@ -33,16 +33,46 @@ namespace  Treinos_API_Backend.Controllers
             }
         }
 
-        // GET: api/Treino/data
-        [Route("api/Treinos/data")]
+        // GET: api/Treino?dataInicio=2025-01-01&dataFim=2025-01-01
+        [Route("api/Treino")]
         public async Task<IHttpActionResult> Get(DateTime dataInicio, DateTime dataFim)
         {
             try
             {
-                List<Models.Treino> Treinos = await repository.GetByDate(dataInicio, dataFim);
+                List<Models.Treino> Treinos = await repository.GetByPeriodOfTime(dataInicio, dataFim);
                 if(Treinos.Count == 0)
                     return NotFound();
                 return Ok(Treinos);
+            }
+            catch (Exception ex)
+            {
+                await logger.Log(ex);
+                return InternalServerError();
+            }
+        }
+
+        // GET: api/Treino/TotalDeDiasTreinados
+        [Route("api/Treino/TotalDeDiasTreinados")]
+        public async Task<IHttpActionResult> GetTotalDiasTreinados()
+        {
+            try
+            {
+                return Ok(await repository.GetByAllTimeTrainingDays());
+            }
+            catch (Exception ex)
+            {
+                await logger.Log(ex);
+                return InternalServerError();
+            }
+        }
+
+        // GET: api/Treino/TotalDeDiasTreinados
+        [Route("api/Treino/ProgressoSemana")]
+        public async Task<IHttpActionResult> GetSemana()
+        {
+            try
+            {
+                return Ok(await repository.GetProgressoSemana());
             }
             catch (Exception ex)
             {

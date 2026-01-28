@@ -10,7 +10,7 @@ namespace Repositories.Interface
     public interface IRepository<T> where T : class
     {
         Task<List<T>> GetAll();
-        Task<List<T>> GetByDate(DateTime InitialDate, DateTime lastDate);
+        Task<List<T>> GetByPeriodOfTime(DateTime InitialDate, DateTime lastDate);
         Task Add(T value);
         Task<bool> Update(T value);
         Task<bool> Delete(int id);
