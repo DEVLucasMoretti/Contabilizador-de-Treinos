@@ -104,8 +104,9 @@ namespace Repositories
             return diasTreinadosNoTotal;
         }
 
-        public async Task<bool> GetByDate(DateTime data)
+        public async Task<Models.Treino> GetByDateToVerifyUpdateOrAdd(DateTime data)
         {
+            Models.Treino treino = new Models.Treino();
             using (conn)
             {
                 await conn.OpenAsync();
@@ -115,11 +116,11 @@ namespace Repositories
                     cmd.Parameters.Add(new SqlParameter("@Data", System.Data.SqlDbType.Date)).Value = data ;
                     SqlDataReader dr = await cmd.ExecuteReaderAsync();
 
-                    if (dr.Read())
-                        return true;    //chamar UPDATE             
+                    if (dr.Read())//UPDATE else POST
+                        MapperTreinoToDr(treino, dr);                
                 }
             }
-            return false;
+            return treino;
         }
 
         public async Task Add(Models.Treino treino)
@@ -130,6 +131,7 @@ namespace Repositories
                 using (cmd)
                 {
                     cmd.CommandText = "INSERT INTO Treino (Data, Treino_Do_Dia, Dia_Da_Semana, Quantidade_Caloria ) VALUES (@Data,@Treino_Do_Dia, @Dia_Da_Semana, @Quantidade_Caloria ); SELECT scope_identity()";
+                    TakeDayOfWeek(treino);
                     MapperTreinoToParameters(treino);
                     treino.Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
                     cacheService.Remove(keyCache);
@@ -145,7 +147,7 @@ namespace Repositories
                 await conn.OpenAsync();
                 using (cmd)
                 {
-                    cmd.CommandText = "UPDATE Treino SET Data = @Data, Treino_Do_Dia  = @Treino_Do_Dia , Quantidade_Caloria = @Quantidade_Caloria WHERE Id = @Id";
+                    cmd.CommandText = "UPDATE Treino SET Data = @Data, Treino_Do_Dia  = @Treino_Do_Dia, Dia_Da_Semana = @Dia_Da_Semana , Quantidade_Caloria = @Quantidade_Caloria WHERE Id = @Id";
                     cmd.Parameters.Add(new SqlParameter("@Id", System.Data.SqlDbType.Int)).Value = treino.Id;
                     MapperTreinoToParameters(treino);
                     linhasAfetadas = await cmd.ExecuteNonQueryAsync();
@@ -191,22 +193,12 @@ namespace Repositories
                 {
                     cmd.CommandText = "SELECT Id, Data, Dia_Da_Semana, Treino_Do_Dia, Quantidade_Caloria FROM Treino WHERE Data BETWEEN @DataIncio AND @DataFim ";
 
-                    DateTime dataIncio = DateTime.Now;
+                    DateTime dataInicio = DateTime.Now;
                     DateTime dataAtualDoComputador = DateTime.Now;
 
-                    switch (dataAtualDoComputador.DayOfWeek)
-                    {
-                        case DayOfWeek.Monday: break;
-                        case DayOfWeek.Tuesday: dataIncio = dataIncio.AddDays(-1); break;
-                        case DayOfWeek.Wednesday: dataIncio = dataIncio.AddDays(-2); break;
-                        case DayOfWeek.Thursday: dataIncio = dataIncio.AddDays(-3); break;
-                        case DayOfWeek.Friday: dataIncio = dataIncio.AddDays(-4); break;
-                        case DayOfWeek.Saturday: dataIncio = dataIncio.AddDays(-5); break;
-                        case DayOfWeek.Sunday: dataIncio = dataIncio.AddDays(-6); break;
-                    }
+                    dataInicio = TakeInitialDateToVerifyWeeklyProgress(dataAtualDoComputador, dataInicio);
 
-
-                    cmd.Parameters.Add(new SqlParameter("@DataIncio", System.Data.SqlDbType.Date)).Value = dataIncio; 
+                    cmd.Parameters.Add(new SqlParameter("@DataIncio", System.Data.SqlDbType.Date)).Value = dataInicio; 
                     cmd.Parameters.Add(new SqlParameter("@DataFim", System.Data.SqlDbType.Date)).Value = dataAtualDoComputador; 
 
                     SqlDataReader dr = await cmd.ExecuteReaderAsync();
@@ -240,7 +232,35 @@ namespace Repositories
             cmd.Parameters.Add(new SqlParameter("@Data", System.Data.SqlDbType.Date)).Value = treino.Data;
         }
 
+        public void TakeDayOfWeek(Models.Treino treino)
+        {
+            switch (treino.Data.DayOfWeek)
+            {
+                case DayOfWeek.Monday: treino.DiaDaSemana = "Segunda-Feira"; break;
+                case DayOfWeek.Tuesday: treino.DiaDaSemana = "Terça-Feira"; break;
+                case DayOfWeek.Wednesday: treino.DiaDaSemana = "Quarta-Feira"; break;
+                case DayOfWeek.Thursday: treino.DiaDaSemana = "Quinta-Feira"; break;
+                case DayOfWeek.Friday: treino.DiaDaSemana = "Sexta-Feira"; break;
+                case DayOfWeek.Saturday: treino.DiaDaSemana = "Sábado"; break;
+                case DayOfWeek.Sunday: treino.DiaDaSemana = "Domingo"; break;
+            }
+        }
 
-        
+        public DateTime TakeInitialDateToVerifyWeeklyProgress(DateTime dataAtualDoComputador, DateTime dataInicio)
+        {
+            switch (dataAtualDoComputador.DayOfWeek)
+            {
+                case DayOfWeek.Monday: break;
+                case DayOfWeek.Tuesday: return dataInicio.AddDays(-1);
+                case DayOfWeek.Wednesday: return dataInicio.AddDays(-2); 
+                case DayOfWeek.Thursday: return dataInicio.AddDays(-3);
+                case DayOfWeek.Friday: return dataInicio.AddDays(-4); 
+                case DayOfWeek.Saturday: return dataInicio.AddDays(-5); 
+                case DayOfWeek.Sunday: return dataInicio.AddDays(-6);      
+            }
+            return dataInicio;
+        }
+
+
     }
 }

@@ -20,6 +20,7 @@ namespace  Treinos_API_Backend.Controllers
             repository.CacheExpirationTime = Configurations.Config.GetCacheExpiration("cacheExpirationTimeInSeconds");
         }
         // GET: api/Treino
+        [Route("api/Treino")]
         public async Task<IHttpActionResult> Get()
         {
             try
@@ -50,6 +51,26 @@ namespace  Treinos_API_Backend.Controllers
                 return InternalServerError();
             }
         }
+
+        // GET: api/Treino?data=2025-01-01
+        [Route("api/Treino")]
+        public async Task<IHttpActionResult> GetUpdateOrPost(DateTime data)
+        {
+            try
+            {
+                Models.Treino treino = await repository.GetByDateToVerifyUpdateOrAdd(data);
+                if(treino.Id != 0)
+                    return Ok(treino);
+                return NotFound();
+
+            }
+            catch (Exception ex)
+            {
+                await logger.Log(ex);
+                return InternalServerError();
+            }
+        }
+
 
         // GET: api/Treino/TotalDeDiasTreinados
         [Route("api/Treino/TotalDeDiasTreinados")]
@@ -102,20 +123,20 @@ namespace  Treinos_API_Backend.Controllers
             }
         }
 
-        // PUT: api/Treino/5
-        public async Task<IHttpActionResult> Put(int id, [FromBody]Models.Treino Treino)
+        // PUT: api/Treino
+        [Route("api/Treino")]
+        public async Task<IHttpActionResult> Put([FromBody]Models.Treino treino)
         {
-            if (Treino == null)
+            if (treino == null)
                 return BadRequest("Os dados do Treino não foram preenchidos ");
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            if(Treino.Id != id)
-                return BadRequest("O Id da rota não corresponde com id");
+
             try
             {
-                if (!await repository.Update(Treino))
+                if (!await repository.Update(treino))
                     return BadRequest();
-                return Ok(Treino);
+                return Ok(treino);
             }
             catch (Exception ex)
             {
