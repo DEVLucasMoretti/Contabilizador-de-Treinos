@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\TCC\\AppFitness\\API\\Treinos-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ADE978A0-72E0-46AB-A4F3-C6E4915F4FE7}|Treino-API-Backend\\Treino.csproj|C:\\TCC\\AppFitness\\API\\Treinos-API\\treino-api-backend\\controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ADE978A0-72E0-46AB-A4F3-C6E4915F4FE7}|Treino-API-Backend\\Treino.csproj|c:\\tcc\\appfitness\\api\\treinos-api\\treino-api-backend\\controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ADE978A0-72E0-46AB-A4F3-C6E4915F4FE7}|Treino-API-Backend\\Treino.csproj|solutionrelative:treino-api-backend\\controllers\\treinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{81CF5A9E-EB49-44D1-81C1-9AA18FAB21A8}|Repositories\\Repositories.csproj|c:\\tcc\\appfitness\\api\\treinos-api\\repositories\\treino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{81CF5A9E-EB49-44D1-81C1-9AA18FAB21A8}|Repositories\\Repositories.csproj|C:\\TCC\\AppFitness\\API\\Treinos-API\\repositories\\treino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{81CF5A9E-EB49-44D1-81C1-9AA18FAB21A8}|Repositories\\Repositories.csproj|solutionrelative:repositories\\treino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -55,7 +55,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -118,19 +118,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Treino.cs",
-              "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Treino.cs",
-              "RelativeDocumentMoniker": "Repositories\\Treino.cs",
-              "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Treino.cs",
-              "RelativeToolTip": "Repositories\\Treino.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAlwLoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T19:16:06.414Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Web.config",
@@ -153,6 +140,43 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TreinoController.cs",
+              "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Treino-API-Backend\\Controllers\\TreinoController.cs",
+              "RelativeDocumentMoniker": "Treino-API-Backend\\Controllers\\TreinoController.cs",
+              "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Treino-API-Backend\\Controllers\\TreinoController.cs",
+              "RelativeToolTip": "Treino-API-Backend\\Controllers\\TreinoController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAArwDgAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T12:40:12.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Config.cs",
+              "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
+              "ToolTip": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAwwCMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-24T17:10:34.243Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Treino.cs",
+              "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Treino.cs",
+              "RelativeDocumentMoniker": "Repositories\\Treino.cs",
+              "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Treino.cs",
+              "RelativeToolTip": "Repositories\\Treino.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAlwLoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T19:16:06.414Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "IRepository.cs",
               "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Repositories\\Interface\\IRepository.cs",
@@ -162,19 +186,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-25T15:49:31.238Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TreinoController.cs",
-              "DocumentMoniker": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Treino-API-Backend\\Controllers\\TreinoController.cs",
-              "RelativeDocumentMoniker": "Treino-API-Backend\\Controllers\\TreinoController.cs",
-              "ToolTip": "C:\\TCC\\AppFitness\\API\\Treinos-API\\Treino-API-Backend\\Controllers\\TreinoController.cs",
-              "RelativeToolTip": "Treino-API-Backend\\Controllers\\TreinoController.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAASwGMAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-26T12:40:12.064Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -198,20 +209,7 @@
               "RelativeToolTip": "Models\\Treino.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T18:15:32.01Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Config.cs",
-              "DocumentMoniker": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
-              "ToolTip": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAwwCMAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-24T17:10:34.243Z"
+              "WhenOpened": "2025-07-06T18:15:32.01Z"
             },
             {
               "$type": "Document",

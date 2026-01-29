@@ -3,7 +3,7 @@ import 'moment/locale/pt-br';
 
 import moment, { Moment } from 'moment';
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -22,6 +22,8 @@ import {
   MatMomentDateModule
 } from '@angular/material-moment-adapter';
 import { Menu } from "../../shared/menu/menu";
+import { TreinoApi } from '../../services/treino-api';
+import { Treino } from '../../Models/Treino';
 
 
 export const MY_DATE_FORMATS = {
@@ -62,9 +64,20 @@ export const MY_DATE_FORMATS = {
 })
 export class IndexContabilizarTreino {
 
-  caloriasgastas: number | string = '';
+  private readonly treinoApi = inject(TreinoApi);
+
+  caloriasgastas: number = 0;
   treinoDoDia: string = '';
-dataSelecionada: Moment | null = null;
+  dataSelecionada: Moment = moment();
+
+
+  treino: Treino = {
+    Id: 0,
+    Data: this.dataSelecionada,
+    DiaDaSemana: '',
+    TreinoDoDia: this.treinoDoDia,
+    QuantidadeCaloria: this.caloriasgastas
+  };
 
   data: Moment = moment();
 
@@ -75,12 +88,25 @@ dataSelecionada: Moment | null = null;
 
 
 
-btnContabilizarTreino() {
-  if (this.dataSelecionada) {
-    const dataFormatada = this.dataSelecionada.format('YYYY-MM-DD');
-    console.log(dataFormatada);
+  btnContabilizarTreino() {
+    const dataFormatada  = this.dataSelecionada.format('YYYY-MM-DD');
+
+
+    this.treinoApi.getUpdateOuCreateTreino(dataFormatada).subscribe({
+      next: (treinoRetornado) => {
+        console.log('Treino contabilizado com sucesso:', treinoRetornado);
+        console.log('CHAMAR UPDATE');
+      },
+      error: () => {
+        console.error('Erro ao contabilizar o treino');
+        console.log('CHAMAR POST');
+
+      }
+    });
+
+
+
   }
-}
 
 
 }
