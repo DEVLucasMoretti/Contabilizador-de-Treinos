@@ -73,10 +73,10 @@ export class IndexContabilizarTreino {
 
   treino: Treino = {
     Id: 0,
-    Data: null,
+    Data: this.dataSelecionada,
     DiaDaSemana: '',
-    TreinoDoDia: '',
-    QuantidadeCaloria: 0
+    TreinoDoDia: this.treinoDoDia,
+    QuantidadeCaloria: this.caloriasgastas
   };
 
   data: Moment = moment();
@@ -89,12 +89,13 @@ export class IndexContabilizarTreino {
 
 
   btnContabilizarTreino() {
-    const dataFormatada  = this.dataSelecionada.format('YYYY-MM-DD');
-    this.treino.Data = this.dataSelecionada.toDate();
+    const dataFormatada = this.dataSelecionada.format('YYYY-MM-DD');
+    //this.treino.Data = this.dataSelecionada.toDate();
     this.treino.QuantidadeCaloria = this.caloriasgastas;
     this.treino.TreinoDoDia = this.treinoDoDia;
     this.treinoApi.getUpdateOuCreateTreino(dataFormatada).subscribe({
       next: (treinoRetornado) => {
+        this.treino.Id = treinoRetornado.Id;
         console.log('Treino contabilizado com sucesso:', treinoRetornado);
         console.log('CHAMAR UPDATE');
         this.atualizarTreinoPorData();
@@ -110,7 +111,7 @@ export class IndexContabilizarTreino {
   }
 
 
-  atualizarTreinoPorData(){
+  atualizarTreinoPorData() {
     this.treinoApi.updateTreino(this.treino).subscribe({
       next: (treinoAtualizado) => {
         alert('Treino atualizado com sucesso:');
@@ -121,7 +122,8 @@ export class IndexContabilizarTreino {
     });
   }
 
-  criarTreino(){
+  criarTreino() {
+    this.treino.Data = this.dataSelecionada.toDate();
     this.treinoApi.addTreino(this.treino).subscribe({
       next: (treinoCriado) => {
         alert('Treino criado com sucesso:');

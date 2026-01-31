@@ -149,6 +149,7 @@ namespace Repositories
                 {
                     cmd.CommandText = "UPDATE Treino SET Data = @Data, Treino_Do_Dia  = @Treino_Do_Dia, Dia_Da_Semana = @Dia_Da_Semana , Quantidade_Caloria = @Quantidade_Caloria WHERE Id = @Id";
                     cmd.Parameters.Add(new SqlParameter("@Id", System.Data.SqlDbType.Int)).Value = treino.Id;
+                    TakeDayOfWeek(treino);
                     MapperTreinoToParameters(treino);
                     linhasAfetadas = await cmd.ExecuteNonQueryAsync();
                 }
