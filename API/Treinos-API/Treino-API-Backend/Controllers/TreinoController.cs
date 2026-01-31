@@ -103,6 +103,7 @@ namespace  Treinos_API_Backend.Controllers
         }
 
         // POST: api/Treino
+        [Route("api/Treino")]
         public async Task<IHttpActionResult> Post([FromBody]Models.Treino Treino)
         {
             if (Treino == null)
