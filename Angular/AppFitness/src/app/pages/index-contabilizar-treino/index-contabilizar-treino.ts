@@ -24,6 +24,10 @@ import {
 import { Menu } from "../../shared/menu/menu";
 import { TreinoApi } from '../../services/treino-api';
 import { Treino } from '../../Models/Treino';
+import { DialogRef } from '@angular/cdk/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalValorPadraoParaCalorias } from '../../shared/modals/modal-valor-padrao-para-calorias/modal-valor-padrao-para-calorias';
+import { ModalConfirmUpdate } from '../../shared/modals/modal-confirm-update/modal-confirm-update';
 
 
 export const MY_DATE_FORMATS = {
@@ -65,6 +69,7 @@ export const MY_DATE_FORMATS = {
 export class IndexContabilizarTreino {
 
   private readonly treinoApi = inject(TreinoApi);
+  public dialog = inject(MatDialog);
 
   caloriasgastas: number = 0;
   treinoDoDia: string = '';
@@ -98,7 +103,7 @@ export class IndexContabilizarTreino {
         this.treino.Id = treinoRetornado.Id;
         console.log('Treino contabilizado com sucesso:', treinoRetornado);
         console.log('CHAMAR UPDATE');
-        this.atualizarTreinoPorData();
+        this.openDialogMesagemParaConfirmarUpdate();
 
       },
       error: () => {
@@ -115,6 +120,8 @@ export class IndexContabilizarTreino {
     this.treinoApi.updateTreino(this.treino).subscribe({
       next: (treinoAtualizado) => {
         alert('Treino atualizado com sucesso:');
+        if(this.treino.QuantidadeCaloria == 0)
+          this.openDialogMensagemValorPadraoParaCaloriasNaoInformadas();
       },
       error: (err) => {
         console.error('Erro ao atualizar o treino:', err);
@@ -130,6 +137,31 @@ export class IndexContabilizarTreino {
       },
       error: (err) => {
         console.error('Erro ao criar o treino:', err);
+      }
+    });
+  }
+
+
+
+openDialogMensagemValorPadraoParaCaloriasNaoInformadas() {
+    const dialogRef = this.dialog.open(ModalValorPadraoParaCalorias, {
+      width: '40vw',
+      height: '11vw',
+      maxWidth: '100vw',
+    });
+  }
+
+
+  openDialogMesagemParaConfirmarUpdate() {
+    const dialogRef = this.dialog.open(ModalConfirmUpdate, {
+      width: '40vw',
+      height: '11vw',
+      maxWidth: '100vw',
+    });
+
+    dialogRef.afterClosed().subscribe((resultado: string | undefined) => {
+      if (resultado) {
+        this.atualizarTreinoPorData();
       }
     });
   }
