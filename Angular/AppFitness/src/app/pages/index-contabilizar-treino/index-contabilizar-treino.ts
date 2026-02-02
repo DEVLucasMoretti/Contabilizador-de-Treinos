@@ -28,6 +28,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalValorPadraoParaCalorias } from '../../shared/modals/modal-valor-padrao-para-calorias/modal-valor-padrao-para-calorias';
 import { ModalConfirmUpdate } from '../../shared/modals/modal-confirm-update/modal-confirm-update';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 export const MY_DATE_FORMATS = {
@@ -70,6 +71,8 @@ export class IndexContabilizarTreino {
 
   private readonly treinoApi = inject(TreinoApi);
   public dialog = inject(MatDialog);
+  private snackBar: MatSnackBar = inject(MatSnackBar);
+
 
   caloriasgastas: number = 0;
   treinoDoDia: string = '';
@@ -101,8 +104,6 @@ export class IndexContabilizarTreino {
     this.treinoApi.getUpdateOuCreateTreino(dataFormatada).subscribe({
       next: (treinoRetornado) => {
         this.treino.Id = treinoRetornado.Id;
-        console.log('Treino contabilizado com sucesso:', treinoRetornado);
-        console.log('CHAMAR UPDATE');
         this.openDialogMesagemParaConfirmarUpdate();
 
       },
@@ -117,33 +118,66 @@ export class IndexContabilizarTreino {
 
 
   atualizarTreinoPorData() {
+    let quantidadeCaloriaEhZero : Boolean = false;
+    if (this.treino.QuantidadeCaloria == 0){
+      this.treino.QuantidadeCaloria = 300
+      quantidadeCaloriaEhZero = true;
+    }
+    if(this.treino.TreinoDoDia == ''){
+      this.treino.TreinoDoDia = 'Treino não foi informado';
+    }
+
     this.treinoApi.updateTreino(this.treino).subscribe({
       next: (treinoAtualizado) => {
-        alert('Treino atualizado com sucesso:');
-        if(this.treino.QuantidadeCaloria == 0)
+        if (quantidadeCaloriaEhZero)
           this.openDialogMensagemValorPadraoParaCaloriasNaoInformadas();
+        this.snackBarSucesso('Treino atualizado com sucesso!');
       },
       error: (err) => {
-        console.error('Erro ao atualizar o treino:', err);
+        this.snackBarErro('Erro ao atualizar o treino.');
       }
     });
   }
 
   criarTreino() {
     this.treino.Data = this.dataSelecionada.toDate();
+    if (this.treino.QuantidadeCaloria == 0)
+      this.treino.QuantidadeCaloria = 300
+    if(this.treino.TreinoDoDia == ''){
+      this.treino.TreinoDoDia = 'Treino não foi informado';
+    }
     this.treinoApi.addTreino(this.treino).subscribe({
       next: (treinoCriado) => {
-        alert('Treino criado com sucesso:');
+        this.snackBarSucesso('Treino criado com sucesso!');
+        if (this.treino.QuantidadeCaloria == 0)
+          this.openDialogMensagemValorPadraoParaCaloriasNaoInformadas();
       },
       error: (err) => {
-        console.error('Erro ao criar o treino:', err);
+        this.snackBarErro('Erro ao criar o treino.');
       }
     });
   }
 
+  snackBarSucesso(mensagem: string): void {
+    this.snackBar.open('Gravado com sucesso!', 'OK', {
+      duration: 5000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['snack-success']
+    });
+  }
 
+  snackBarErro(mensagem: string): void {
 
-openDialogMensagemValorPadraoParaCaloriasNaoInformadas() {
+    this.snackBar.open(mensagem, 'OK', {
+      duration: 5000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['snack-error']
+    });
+  }
+
+  openDialogMensagemValorPadraoParaCaloriasNaoInformadas() {
     const dialogRef = this.dialog.open(ModalValorPadraoParaCalorias, {
       width: '40vw',
       height: '11vw',

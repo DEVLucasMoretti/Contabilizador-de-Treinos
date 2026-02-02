@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+/* SUCESSO */
+.snack-success .mdc-snackbar__surface {
+  background-color: #2e7d32 !important; /* verde */
+  color: #fff;
+}
+
+/* ERRO */
+.snack-error .mdc-snackbar__surface {
+  background-color: #c62828 !important; /* vermelho */
+  color: #fff;
+}

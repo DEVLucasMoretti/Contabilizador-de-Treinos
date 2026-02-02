@@ -31,3 +31,9 @@ p{
   height: auto;
   z-index: 1000;   /* garante que fique por cima */
 }
+
+::ng-deep .snack-success {
+  --mdc-snackbar-container-color: #2e7d32;
+  --mdc-snackbar-supporting-text-color: #fff;
+
+}
