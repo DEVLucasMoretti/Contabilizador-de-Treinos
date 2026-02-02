@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Header } from "../../shared/header/header";
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,6 +18,9 @@ import 'moment/locale/pt-br';
 import { FormsModule } from '@angular/forms';
 import { timeInterval, timer } from 'rxjs';
 import { MatCard } from "@angular/material/card";
+import { TreinoApi } from '../../services/treino-api';
+import { Treino } from '../../Models/Treino';
+import { MatSnackBar } from '@angular/material/snack-bar';
 const moment = _moment;
 // registra o locale português no Angular
 registerLocaleData(pt);
@@ -47,7 +50,7 @@ export const MY_DATE_FORMATS = {
     MatMomentDateModule,
     MatButtonModule,
     MatCard
-],
+  ],
   templateUrl: './index-relatorio.html',
   styleUrl: './index-relatorio.css',
   providers: [
@@ -58,12 +61,20 @@ export const MY_DATE_FORMATS = {
 })
 export class IndexRelatorio {
   private readonly router = inject(Router);
+  private readonly treinoApi = inject(TreinoApi);
   public dialog = inject(MatDialog);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private snackBar: MatSnackBar = inject(MatSnackBar);
+
+
 
   clicouEmBuscar: number = 0;
   periodo: { start: Date | null; end: Date | null } = { start: null, end: null };
-  listaDeTreinos: any[] = [];
-  teste : number = 0;
+  teste: number = 0;
+  caloriasGastasNoRelatorio: number = 0;
+  diasTreinadosNoRelatorio: number = 0;
+  listaDeTreinos: Treino[] = [];
+
 
   constructor() {
     //força o calendário e nomes para português
@@ -71,10 +82,41 @@ export class IndexRelatorio {
   }
 
 
-   BuscarRelatorio() {
+  BuscarRelatorio() {
     this.clicouEmBuscar++;
     const dataInicio = moment(this.periodo.start).format('YYYY-MM-DD');
     const dataFim = moment(this.periodo.end).format('YYYY-MM-DD');
     console.log('Buscar relatório de', dataInicio, 'até', dataFim, 'para o tipo de serviço:');
-   }
+
+
+    this.treinoApi.getRelatorioDeTreinos(dataInicio, dataFim).subscribe({
+      next: (treinos) => {
+        treinos.forEach(t => {
+          if (t.Data) {
+            t.Data = new Date(t.Data.toString());
+          }
+        });
+        this.listaDeTreinos = treinos;
+        this.diasTreinadosNoRelatorio = this.listaDeTreinos.length;
+        this.caloriasGastasNoRelatorio = this.listaDeTreinos.reduce((total, treino) => total + treino.QuantidadeCaloria, 0);
+        console.log(this.listaDeTreinos);
+        this.cdr.detectChanges();
+
+      },
+      error: (err) => {
+        this.snackBarAviso("Selecione um período válido para gerar o relatório.");
+      }
+    });
+  }
+
+  snackBarAviso(mensagem: string): void {
+
+    this.snackBar.open(mensagem, '', {
+      duration: 5000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['snack-warning']
+    });
+  }
+
 }

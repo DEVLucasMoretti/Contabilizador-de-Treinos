@@ -41,12 +41,12 @@
       <div class="container-cards" *ngIf="this.clicouEmBuscar > 0">
         <mat-card class="card">
           <p>Dias Treinados</p>
-          <p>{{this.teste}} Dias</p>
+          <p>{{this.diasTreinadosNoRelatorio}} Dias</p>
         </mat-card>
 
         <mat-card class="card">
           <p>Calorias Gastas </p>
-          <p>{{this.teste}} Kcal</p>
+          <p>{{this.caloriasGastasNoRelatorio}} Kcal</p>
         </mat-card>
 
       </div>
@@ -64,11 +64,11 @@
             </tr>
           </thead>
           <tbody id="corpo-tabela">
-            <tr *ngFor="let linha of this.listaDeTreinos">
-              <td>{{linha.Data}}</td>
+            <tr *ngFor="let linha of listaDeTreinos">
+              <td>{{linha.Data?.toString() | date: 'dd/MM/yyyy'}}</td>
               <td>{{linha.DiaDaSemana}}</td>
-              <td>{{linha.KcalGastas}}</td>
-              <td>{{linha.Treino}}</td>
+              <td>{{linha.TreinoDoDia}}</td>
+              <td>{{linha.QuantidadeCaloria}}</td>
           </tbody>
         </table>
       </div>

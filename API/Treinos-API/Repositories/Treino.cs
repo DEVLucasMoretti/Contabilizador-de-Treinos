@@ -71,7 +71,7 @@ namespace Repositories
                 {
                     cmd.CommandText = "SELECT Id, Data, Dia_Da_Semana, Treino_Do_Dia, Quantidade_Caloria FROM Treino WHERE Data BETWEEN @DataInicio AND @DataFim ";
                     cmd.Parameters.Add(new SqlParameter("@DataInicio", System.Data.SqlDbType.VarChar)).Value = dataInicio;
-                    cmd.Parameters.Add(new SqlParameter("@DataFim", System.Data.SqlDbType.VarChar)).Value = dataInicio;
+                    cmd.Parameters.Add(new SqlParameter("@DataFim", System.Data.SqlDbType.VarChar)).Value = dataFim;
                     SqlDataReader dr = await cmd.ExecuteReaderAsync();
 
                     while (dr.Read())

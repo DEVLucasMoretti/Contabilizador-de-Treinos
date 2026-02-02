@@ -28,6 +28,10 @@ export class TreinoApi {
   getUpdateOuCreateTreino(data: string): Observable<Treino> {
     return this.httpClient.get<Treino>(`${this.apiUrlTreinos}?data=${data}`);
   }
+  getRelatorioDeTreinos(dataInicio: string, dataFim: string): Observable<Treino[]> {
+
+    return this.httpClient.get<Treino[]>(`${this.apiUrlTreinos}?dataInicio=${dataInicio}&dataFim=${dataFim}`);
+  }
   updateTreino(treino: Treino): Observable<Treino> {
     return this.httpClient.put<Treino>(this.apiUrlTreinos, treino);
   }

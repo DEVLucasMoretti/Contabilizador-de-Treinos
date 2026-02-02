@@ -9,3 +9,11 @@
   background-color: #c62828 !important; /* vermelho */
   color: #fff;
 }
+
+
+
+/* AVISO */
+.snack-warning .mdc-snackbar__surface {
+  background-color: #e0e411 !important; /* vermelho */
+  color : #330f0f !important;
+}
