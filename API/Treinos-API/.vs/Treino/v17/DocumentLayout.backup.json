@@ -69,7 +69,6 @@
               "RelativeDocumentMoniker": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax",
               "ToolTip": "C:\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax",
               "RelativeToolTip": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Global.asax",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000179|",
               "WhenOpened": "2026-01-24T17:28:01.154Z",
               "IsPinned": true
@@ -125,7 +124,8 @@
               "RelativeToolTip": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAwwCMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-24T17:10:34.243Z"
+              "WhenOpened": "2026-01-24T17:10:34.243Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -161,7 +161,8 @@
               "RelativeToolTip": "..\\..\\..\\..\\ProjetoparaProvaTissoApi\\Carros-API\\Carros-API-Backend\\Configurations\\Config.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAwwCMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T18:48:23.056Z"
+              "WhenOpened": "2025-07-06T18:48:23.056Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -173,7 +174,8 @@
               "RelativeToolTip": "Repositories\\Treino.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAtwEkAAABzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T19:16:06.414Z"
+              "WhenOpened": "2025-07-06T19:16:06.414Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -185,7 +187,8 @@
               "RelativeToolTip": "Repositories\\Interface\\IRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T15:49:31.238Z"
+              "WhenOpened": "2025-10-25T15:49:31.238Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -197,7 +200,8 @@
               "RelativeToolTip": "Utils\\Logger.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAgwCAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T18:20:10.496Z"
+              "WhenOpened": "2025-07-06T18:20:10.496Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -209,7 +213,8 @@
               "RelativeToolTip": "Models\\Treino.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T18:15:32.01Z"
+              "WhenOpened": "2025-07-06T18:15:32.01Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -221,7 +226,8 @@
               "RelativeToolTip": "Utils\\Interface\\ICacheService.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T20:29:18.851Z"
+              "WhenOpened": "2025-07-06T20:29:18.851Z",
+              "EditorCaption": ""
             }
           ]
         }
