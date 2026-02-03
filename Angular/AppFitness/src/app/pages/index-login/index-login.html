@@ -1,1 +1,43 @@
-<p>index-login works!</p>
+<main class="main">
+  <div class="login-container">
+    <div class="login-box">
+      <img class="mt-4" src="logo.png" alt="Logo" width="150" height="140">
+      <form>
+        <div class="col-md-5 mb-2 mt-3  form-control-lg">
+          <div class="form-floating">
+            <input class="form-control bg-input" [(ngModel)]="login" id="Nome" name="Nome" placeholder="Nome"
+              maxlength="115" />
+            <label for="Nome">Usuário</label>
+          </div>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="password-field mat-mdc-form-field">
+            <mat-label>Senha</mat-label>
+
+            <input matInput name="senha" [(ngModel)]="senha" [type]="hide ? 'password' : 'text'"
+              placeholder="Digite sua senha" />
+
+            <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+              [attr.aria-label]="'Mostrar ou ocultar senha'">
+              <mat-icon>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div style="flex-direction: row; display: flex; gap: 25px;">
+          <p style="cursor: pointer; color: #ffffff;" (click)="cadastrarNovoUsuario()">Cadastrar usuário</p>
+          <p style="cursor: pointer; color: #ffffff;" (click)="esqueciMinhaSenha()">Esqueci minha senha</p>
+        </div>
+        <div  class="col-md-4 d-grid mb-2" *ngIf="this.btn === 1 || this.btn === '' ">
+          <button type="button" class="btn btn-color" (click)="btnlogar()">Acessar</button>
+        </div>
+        <div class="col-md-4 d-grid mb-2" *ngIf="this.btn === 3">
+          <button type="button" class="btn btn-color" (click)="btncadastrarNovoUsuario()">Cadastrar</button>
+        </div>
+        <div class="col-md-4 d-grid mb-2 color" *ngIf="this.btn === 4">
+          <button type="button" class="btn btn-color" (click)="btnEsqueciMinhaSenha()">Alterar Senha</button>
+        </div>
+        <h4 class="mt-2" name="mensagemAuxiliar" [(ngModel)]="mensagemAuxiliar" style="color: #ffffff;">{{mensagemAuxiliar}}</h4>
+      </form>
+    </div>
+  </div>
+</main>
