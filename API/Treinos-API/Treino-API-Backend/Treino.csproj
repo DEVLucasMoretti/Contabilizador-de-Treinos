@@ -147,6 +147,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configurations\Config.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\TreinoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

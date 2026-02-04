@@ -1,0 +1,160 @@
+﻿using Models;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Utils;
+using Utils.Interface;
+
+namespace Repositories
+{
+    public class Auth
+    {
+        readonly SqlConnection conn;
+        readonly SqlCommand cmd;
+        readonly ICacheService cacheService;
+        readonly string keyCache;
+        public int CacheExpirationTime { get; set; }
+
+        public Auth(string connectionString)
+        {
+            conn = new SqlConnection(connectionString);
+            cmd = new SqlCommand();
+            cmd.Connection = conn;
+            keyCache = "usuariosCache";
+            CacheExpirationTime = 15;
+            cacheService = new MemoryCacheService();
+        }
+
+        public async Task<List<Models.Usuario>> GetAll()
+        {
+            List<Models.Usuario> usuarios;
+            usuarios = cacheService.Get<List<Models.Usuario>>(keyCache);
+
+            if (usuarios != null)
+                return usuarios;
+
+            usuarios = new List<Models.Usuario>();
+            using (conn)
+            {
+                await conn.OpenAsync();
+                using (cmd)
+                {
+                    cmd.CommandText = "SELECT Id, Nome, Senha FROM Usuario";
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+                    while (dr.Read())
+                    {
+                        Models.Usuario usuario = new Models.Usuario();
+                        MapperUsuarioToDr(usuario, dr);
+                        usuarios.Add(usuario);
+                    }
+                }
+            }
+            cacheService.Set(keyCache, usuarios, CacheExpirationTime);
+            return usuarios;
+        }
+
+        public async Task<Models.Usuario> GetByUser(string name, string senha)
+        {
+            Models.Usuario usuario = new Models.Usuario();
+
+            using (conn)
+            {
+                await conn.OpenAsync();
+                using (cmd)
+                {
+                    cmd.CommandText = "SELECT Id, Nome, Senha FROM Usuario WHERE Nome = @Nome, Senha = @Senha";
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+                    if (dr.Read())
+                    {
+                        MapperUsuarioToDr(usuario, dr);
+                        return usuario;
+                    }
+                }
+            }
+            return usuario;
+        }
+
+
+        public async Task Add(Models.Usuario usuario)
+        {
+            using (conn)
+            {
+                await conn.OpenAsync();
+                using (cmd)
+                {
+                    cmd.CommandText = "INSERT INTO Usuario (Nome, Senha) VALUES (@Nome,@Senha); SELECT scope_identity()";
+                    MapperUsuarioToParameters(usuario);
+                    usuario.Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                    cacheService.Remove(keyCache);
+                }
+            }
+        }
+
+
+        public async Task<bool> Update(Models.Usuario usuario)
+        {
+            int linhasAfetadas;
+            using (conn)
+            {
+                await conn.OpenAsync();
+                using (cmd)
+                {
+                    cmd.CommandText = "UPDATE Usuario SET Nome = @Nome, Senha  = @Senha WHERE Id = @Id";
+                    cmd.Parameters.Add(new SqlParameter("@Id", System.Data.SqlDbType.Int)).Value = usuario.Id;
+                    linhasAfetadas = await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            if (linhasAfetadas == 0)
+                return false;
+
+            cacheService.Remove(keyCache);
+            return true;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            int linhasAfetadas;
+            using (conn)
+            {
+                await conn.OpenAsync();
+                using (cmd)
+                {
+                    cmd.CommandText = "DELETE Usuario WHERE Id = @Id";
+                    cmd.Parameters.Add(new SqlParameter("@Id", System.Data.SqlDbType.Int)).Value = id;
+                    linhasAfetadas = await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            if (linhasAfetadas == 0)
+                return false;
+
+            cacheService.Remove(keyCache);
+            return true;
+
+        }
+
+        public void MapperUsuarioToDr(Models.Usuario usuario, SqlDataReader dr)
+        {
+            usuario.Id = (int)dr["Id"];
+            usuario.Nome = dr["Nome"].ToString();
+            usuario.Senha = dr["Senha"].ToString();
+           
+        }
+
+        public void MapperUsuarioToParameters(Models.Usuario usuario)
+        {
+            cmd.Parameters.Add(new SqlParameter("@Nome", System.Data.SqlDbType.VarChar)).Value = usuario.Nome;
+            cmd.Parameters.Add(new SqlParameter("@Senha", System.Data.SqlDbType.VarChar)).Value = usuario.Senha;
+
+        }
+
+
+
+
+
+    }
+    }
