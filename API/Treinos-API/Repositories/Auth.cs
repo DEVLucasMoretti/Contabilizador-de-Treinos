@@ -1,10 +1,13 @@
-﻿using Models;
+﻿using AuthLibrary;
+using Models;
+using Repositories.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Utils;
 using Utils.Interface;
 
@@ -18,6 +21,11 @@ namespace Repositories
         readonly string keyCache;
         public int CacheExpirationTime { get; set; }
 
+        private readonly JwtManager jwtManager;
+        string secretKey = "testeJWTcompelosmenos32caracterqueficarcomplexoparaoalgoritmoHS256";
+
+
+
         public Auth(string connectionString)
         {
             conn = new SqlConnection(connectionString);
@@ -26,6 +34,7 @@ namespace Repositories
             keyCache = "usuariosCache";
             CacheExpirationTime = 15;
             cacheService = new MemoryCacheService();
+            jwtManager = new JwtManager(this.secretKey);
         }
 
         public async Task<List<Models.Usuario>> GetAll()
@@ -57,7 +66,7 @@ namespace Repositories
             return usuarios;
         }
 
-        public async Task<Models.Usuario> GetByUser(string name, string senha)
+        public async Task<Models.Usuario> GetByUser(Models.Usuario usuarioRecebido)
         {
             Models.Usuario usuario = new Models.Usuario();
 
@@ -66,7 +75,8 @@ namespace Repositories
                 await conn.OpenAsync();
                 using (cmd)
                 {
-                    cmd.CommandText = "SELECT Id, Nome, Senha FROM Usuario WHERE Nome = @Nome, Senha = @Senha";
+                    cmd.CommandText = "SELECT Id, Nome, Senha FROM Usuario WHERE Nome = @Nome AND Senha = @Senha";
+                    MapperUsuarioToParameters(usuarioRecebido);
                     SqlDataReader dr = await cmd.ExecuteReaderAsync();
 
                     if (dr.Read())
@@ -79,6 +89,17 @@ namespace Repositories
             return usuario;
         }
 
+        public async Task<string> Login(Models.Usuario usuarioRecebido)
+        {
+            var usuarioBanco = await GetByUser(usuarioRecebido);
+
+            if (usuarioBanco.Id == 0)
+            {
+                return null;
+            }
+
+            return jwtManager.GenerateToken(usuarioBanco.Nome);
+        }
 
         public async Task Add(Models.Usuario usuario)
         {
