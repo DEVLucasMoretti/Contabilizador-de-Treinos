@@ -1,3 +1,4 @@
+import { Usuario } from './../../Models/Usuario';
 import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TreinoApi } from '../../services/treino-api';
@@ -31,13 +32,26 @@ export class IndexLogin {
   btn: number | string = '';
   numeroAuxiliarAltararSenhaOuCastrarUsuario: number = 0;
 
-
+  usuario : Usuario = {
+    id: 0,
+    nome: '',
+    senha: ''
+  };
 
   // =============================
   // LOGIN
   // =============================
   btnlogar() {
-
+    console.log(this.usuario);
+    this.treinoApi.login(this.usuario).subscribe({
+      next: (token) => {
+        localStorage.setItem('token', token);
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        this.mensagemAuxiliar = 'Usuário ou senha inválidos.';
+      }
+    });
   }
 
 cadastrarNovoUsuario(){

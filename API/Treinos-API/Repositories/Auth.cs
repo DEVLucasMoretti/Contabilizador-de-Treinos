@@ -4,6 +4,7 @@ using Repositories.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,6 +88,17 @@ namespace Repositories
                 }
             }
             return usuario;
+        }
+
+        public async Task<bool> VerifyToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
+
+            // Verifica se o token está válido e não expirou
+            if (jwtToken == null || jwtToken.ValidTo < DateTime.UtcNow)
+                return true;
+            return false;
         }
 
         public async Task<string> Login(Models.Usuario usuarioRecebido)

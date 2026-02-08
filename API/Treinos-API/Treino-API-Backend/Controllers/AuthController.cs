@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using AuthLibrary;
 using System.Reflection;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Treinos_API_Backend.Controllers
 {
@@ -29,6 +30,21 @@ namespace Treinos_API_Backend.Controllers
             repository.CacheExpirationTime = Configurations.Config.GetCacheExpiration("cacheExpirationTimeInSeconds");
             //jwtManager = new JwtManager(secretKey);
         }
+
+        public async Task<IHttpActionResult> Get(string token)
+        {
+            try
+            {
+                if(!await repository.VerifyToken(token))
+                    return NotFound();
+                return Ok(true);
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
 
         // POST: api/Auth
         public async Task<IHttpActionResult> Login([FromBody] Models.Usuario usuarioRecebido)

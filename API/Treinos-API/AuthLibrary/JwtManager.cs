@@ -22,7 +22,7 @@ namespace AuthLibrary
             this.signInKey = new SymmetricSecurityKey(secretBytes);
         }
 
-        public string GenerateToken(string username, int expireMinutes = 60)
+        public string GenerateToken(string username, int expireMinutes = 1)
         {
             var claims = new[]
             {

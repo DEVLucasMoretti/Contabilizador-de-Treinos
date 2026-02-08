@@ -4,6 +4,7 @@ import { Treino } from '../Models/Treino';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Moment } from 'moment';
+import { Usuario } from '../Models/Usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,12 @@ export class TreinoApi {
   private readonly httpClient = inject(HttpClient);
 
   private readonly apiUrlTreinos: string;
+  private readonly apiUrlAuth: string;
 
   constructor() {
     this.apiUrlTreinos = `${environment.apiUrl}/Treino`;
+    this.apiUrlAuth= `${environment.apiUrl}/Auth`;
+
   }
 
   getProgressoDaSemana(): Observable<Treino[]> {
@@ -37,5 +41,12 @@ export class TreinoApi {
   }
   addTreino(treino: Treino): Observable<Treino> {
     return this.httpClient.post<Treino>(this.apiUrlTreinos, treino);
+  }
+
+  login(usuario: Usuario): Observable<string> {
+    return this.httpClient.post<string>(`${this.apiUrlAuth}`, usuario);
+  }
+  VerificaToken(token : string | null): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.apiUrlAuth}/VerificarToken?token=${token}`);
   }
 }

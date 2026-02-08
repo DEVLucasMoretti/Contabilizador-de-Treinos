@@ -5,7 +5,7 @@
       <form>
         <div class="col-md-5 mb-2 mt-3  form-control-lg">
           <div class="form-floating">
-            <input class="form-control bg-input" [(ngModel)]="login" id="Nome" name="Nome" placeholder="Nome"
+            <input class="form-control bg-input" [(ngModel)]="usuario.nome" id="Nome" name="Nome" placeholder="Nome"
               maxlength="115" />
             <label for="Nome">Usuário</label>
           </div>
@@ -14,7 +14,7 @@
           <mat-form-field appearance="outline" class="password-field mat-mdc-form-field">
             <mat-label>Senha</mat-label>
 
-            <input matInput name="senha" [(ngModel)]="senha" [type]="hide ? 'password' : 'text'"
+            <input matInput name="senha" [(ngModel)]="usuario.senha" [type]="hide ? 'password' : 'text'"
               placeholder="Digite sua senha" />
 
             <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
