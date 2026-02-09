@@ -97,8 +97,8 @@ namespace Repositories
 
             // Verifica se o token está válido e não expirou
             if (jwtToken == null || jwtToken.ValidTo < DateTime.UtcNow)
-                return true;
-            return false;
+                return false;
+            return true;
         }
 
         public async Task<string> Login(Models.Usuario usuarioRecebido)

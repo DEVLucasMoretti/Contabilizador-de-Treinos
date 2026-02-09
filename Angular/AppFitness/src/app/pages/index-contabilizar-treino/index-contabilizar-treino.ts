@@ -98,7 +98,10 @@ export class IndexContabilizarTreino {
 
   btnContabilizarTreino() {
     const dataFormatada = this.dataSelecionada.format('YYYY-MM-DD');
-    //this.treino.Data = this.dataSelecionada.toDate();
+
+    if(new Date (dataFormatada) > new Date())
+      return alert("A data escolhida não pode ser maior do que a data atual.")
+
     this.treino.QuantidadeCaloria = this.caloriasgastas;
     this.treino.TreinoDoDia = this.treinoDoDia;
     this.treinoApi.getUpdateOuCreateTreino(dataFormatada).subscribe({
