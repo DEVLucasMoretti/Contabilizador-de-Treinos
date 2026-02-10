@@ -49,4 +49,13 @@ export class TreinoApi {
   VerificaToken(token : string | null): Observable<boolean> {
     return this.httpClient.get<boolean>(`${this.apiUrlAuth}/VerificarToken?token=${token}`);
   }
+  getByMasterUser(nome: string, senha : string): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`${environment.apiUrl}/Usuario/Mestre?Nome=${nome}&Senha=${senha}`);
+  }
+   addUsuario(usuario : Usuario): Observable<Usuario>{
+    return this.httpClient.post<Usuario>(`${environment.apiUrl}/Usuario`, usuario)
+  }
+  UpdatePasswordFromUser(nome: string, senha : string) : Observable<Usuario> {
+    return this.httpClient.put<Usuario>(`${environment.apiUrl}/Usuario?Nome=${nome}&Senha=${senha}`, {});
+  }
 }

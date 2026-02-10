@@ -18,11 +18,22 @@ GO
 CREATE TABLE Usuario 
 (
 	Id int IDENTITY(1,1),
-	Nome varchar(50) not null,
+	Nome Nvarchar(50) UNIQUE not null,
 	Senha Nvarchar(50) not null,
 	CONSTRAINT pk_Id PRIMARY KEY (Id)
 );
 
+GO
+INSERT INTO Usuario(Nome, Senha) VALUES ('guest','guest')
+GO
+
+CREATE TABLE Usuario_Mestre (
+    Id   INT IDENTITY(1,1) PRIMARY KEY,
+    Nome NVARCHAR(50) NOT NULL UNIQUE,
+	CONSTRAINT fk_Usuario_Mestre_Nome FOREIGN KEY (Nome) REFERENCES Usuario (Nome)
+);
+GO
+INSERT INTO Usuario_Mestre VALUES ('guest')
 GO
 
 CREATE TABLE Tela_Permissao(
@@ -35,6 +46,8 @@ CREATE TABLE Tela_Permissao(
 	CONSTRAINT pk_Id_Tela_Permissao PRIMARY KEY (Id),
 	CONSTRAINT fk_Id_Usuario FOREIGN KEY (Id_Usuario) REFERENCES Usuario(Id)
 );
+
+GO
 
 INSERT INTO Tela_Permissao(Id_Usuario,Home,ContabilizarTreino,Relatorio,Treino)
 VALUES(1,'Sim','Sim','Sim','Sim')
