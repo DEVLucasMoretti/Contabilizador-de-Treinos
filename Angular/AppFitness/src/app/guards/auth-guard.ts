@@ -1,38 +1,72 @@
-import { CanActivate, CanActivateFn, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 import { TreinoApi } from '../services/treino-api';
+import { map, catchError } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Injectable({
   providedIn: 'root',
 })
-
 export class AuthGuard implements CanActivate {
-    private readonly treinoApi = inject(TreinoApi);
+
+  private readonly treinoApi = inject(TreinoApi);
+  private snackBar: MatSnackBar = inject(MatSnackBar);
+
 
   constructor(private router: Router) { }
 
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> {
+
     const token = localStorage.getItem('token');
 
-    this.treinoApi.VerificaToken(token).subscribe({
-      next: (isValid) => {
+    if (!token) {
+      this.router.navigate(['/login']);
+      return of(false);
+    }
+
+    return this.treinoApi.VerificaToken(token).pipe(
+
+      map((isValid) => {
+
         if (!isValid) {
           this.router.navigate(['/login']);
+          return false;
         }
-      },
-      error: () => {
+
+        //PERMISSÃO
+        const permissoes = JSON.parse(localStorage.getItem('permissoes') || '[]');
+
+        const permissaoNecessaria = route.data['permissao'];
+
+        if (permissaoNecessaria && !permissoes.includes(permissaoNecessaria)) {
+          this.router.navigate(['/sem-permissao']);
+          this.snackBarErro('Você não tem permissão para acessar esta página.');
+          return false;
+        }
+
+        return true;
+      }),
+
+      catchError(() => {
         this.router.navigate(['/login']);
-      }
-    });
-
-    if (token) {
-      // Se o token existir, permitimos o acesso
-      return true;
-    } else {
-      // Se não houver token, redirecionamos para o login
-      this.router.navigate(['/login']);
-      return false;
-    }
+        return of(false);
+      })
+    );
   }
-}
 
+
+  snackBarErro(mensagem: string): void {
+
+    this.snackBar.open(mensagem, 'OK', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['snack-error']
+    });
+  }
+
+}

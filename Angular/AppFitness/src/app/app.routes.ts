@@ -9,10 +9,10 @@ export const routes: Routes =
 [
 
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: IndexHome, canActivate: [AuthGuard], title: 'Home'},
-  {path: 'contabilizarTreino', component: IndexContabilizarTreino, canActivate: [AuthGuard], title: 'contabilizar Treino'},
-  {path: 'treinos', component: IndexContabilizarTreino, canActivate: [AuthGuard], title: 'contabilizar Treino'},
-  {path: 'relatorio', component: IndexRelatorio, canActivate: [AuthGuard], title: 'Relatório'},
+  {path: 'home', component: IndexHome, canActivate: [AuthGuard], data: { permissao: 'Home' }, title: 'Home'},
+  {path: 'contabilizarTreino', component: IndexContabilizarTreino, canActivate: [AuthGuard], data: { permissao: 'ContabilizarTreino' }, title: 'contabilizar Treino'},
+  {path: 'treinos', component: IndexContabilizarTreino, canActivate: [AuthGuard], data: { permissao: 'Treino' }, title: 'contabilizar Treino'},
+  {path: 'relatorio', component: IndexRelatorio, canActivate: [AuthGuard], data: { permissao: 'Relatorio' }, title: 'Relatório'},
   {path: 'login', component: IndexLogin, title: 'Login'},
 ];
 
