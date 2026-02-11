@@ -16,6 +16,7 @@ namespace Repositories
 {
     public class Auth
     {
+        readonly string connectionStringAux;
         readonly SqlConnection conn;
         readonly SqlCommand cmd;
         readonly ICacheService cacheService;
@@ -29,6 +30,7 @@ namespace Repositories
 
         public Auth(string connectionString)
         {
+            connectionStringAux = connectionString;
             conn = new SqlConnection(connectionString);
             cmd = new SqlCommand();
             cmd.Connection = conn;
@@ -113,6 +115,38 @@ namespace Repositories
             return jwtManager.GenerateToken(usuarioBanco.Nome);
         }
 
+        public async Task<List<string>> BuildPermissions(Models.Usuario usuarioRecebido)
+        {
+            var usuarioBanco = await GetByUser(usuarioRecebido);
+            return await GetListPermission(usuarioBanco);
+        }
+
+        public async Task<List<string>> GetListPermission(Models.Usuario usuarioBanco)
+        {
+            List<string> permissions = new List<string>();
+            using (var conn = new SqlConnection(connectionStringAux))
+            {
+                await conn.OpenAsync();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT Tela FROM Tela_Permissao WHERE Id_Usuario = @Id AND Acessivel = 1 ";
+                    cmd.Parameters.Add(new SqlParameter("@Id", System.Data.SqlDbType.Int)).Value = usuarioBanco.Id;
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+                    while (dr.Read())
+                    {
+                        string tela = dr["Tela"].ToString();
+                        permissions.Add(tela);
+                    }
+                }
+            }
+            return permissions;
+        }
+
+
+
+
+
         public async Task Add(Models.Usuario usuario)
         {
             using (conn)
@@ -184,10 +218,6 @@ namespace Repositories
             cmd.Parameters.Add(new SqlParameter("@Senha", System.Data.SqlDbType.VarChar)).Value = usuario.Senha;
 
         }
-
-
-
-
 
     }
     }

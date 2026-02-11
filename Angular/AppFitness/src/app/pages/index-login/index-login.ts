@@ -52,7 +52,7 @@ export class IndexLogin {
       next: (token) => {
         localStorage.setItem('token', token);
         localStorage.setItem('nomeUsuario', this.usuario.Nome); // Salva o nome do usuário
-        this.router.navigate(['/home']);
+        this.contruirPermissaoDeAcesso();
       },
       error: (err) => {
         this.mensagemAuxiliar = 'Usuário ou senha inválidos.';
@@ -60,6 +60,13 @@ export class IndexLogin {
       }
     });
   }
+
+  contruirPermissaoDeAcesso() {
+    this.treinoApi.VerificaPermissaoDeAcesso(this.usuario).subscribe({
+      next: (permissoes) => {
+        localStorage.setItem('permissoes', JSON.stringify(permissoes));
+        this.router.navigate(['/home']);
+  }   });}
 
   btnValidarUsuarioMestre() {
     this.treinoApi.getByMasterUser(this.login, this.senha).subscribe({

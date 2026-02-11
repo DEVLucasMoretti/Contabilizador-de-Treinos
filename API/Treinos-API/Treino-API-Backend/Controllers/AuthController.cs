@@ -31,6 +31,19 @@ namespace Treinos_API_Backend.Controllers
             //jwtManager = new JwtManager(secretKey);
         }
 
+        [Route("api/Auth/Permissoes")]
+        public async Task<IHttpActionResult> PostPermission(Models.Usuario usuario)
+        {
+            try
+            {
+                return Ok(await repository.BuildPermissions(usuario));
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
         public async Task<IHttpActionResult> Get(string token)
         {
             try
@@ -67,27 +80,6 @@ namespace Treinos_API_Backend.Controllers
                 return Unauthorized();
             }
         }
-    
-    /*
-    if (usuario == null)
-        return BadRequest("Os dados do Usuário não foram preenchidos ");
-    if (!ModelState.IsValid)
-        return BadRequest(ModelState);
-    try
-    {
-        await repository.Login(usuario);
-        if (usuario.Id == 0)
-            return BadRequest();
-        return Ok(usuario);
-    }
-    catch (Exception ex)
-    {
-        await logger.Log(ex);
-        return InternalServerError();
-    }
-    */
-
-
 
         // GET: api/Auth
         public async Task<IHttpActionResult> Get()

@@ -1,10 +1,10 @@
+import { Usuario } from './../Models/Usuario';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Treino } from '../Models/Treino';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Moment } from 'moment';
-import { Usuario } from '../Models/Usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -49,6 +49,10 @@ export class TreinoApi {
   VerificaToken(token : string | null): Observable<boolean> {
     return this.httpClient.get<boolean>(`${this.apiUrlAuth}/VerificarToken?token=${token}`);
   }
+  VerificaPermissaoDeAcesso(usuario : Usuario): Observable<string[]> {
+    return this.httpClient.post<string[]>(`${this.apiUrlAuth}/Permissoes`, usuario);
+  }
+
   getByMasterUser(nome: string, senha : string): Observable<Usuario> {
     return this.httpClient.get<Usuario>(`${environment.apiUrl}/Usuario/Mestre?Nome=${nome}&Senha=${senha}`);
   }
@@ -58,4 +62,5 @@ export class TreinoApi {
   UpdatePasswordFromUser(nome: string, senha : string) : Observable<Usuario> {
     return this.httpClient.put<Usuario>(`${environment.apiUrl}/Usuario?Nome=${nome}&Senha=${senha}`, {});
   }
+
 }
